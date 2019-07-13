@@ -1,0 +1,14 @@
+Select
+{[Date].[Calendar Year].&[2002],
+[Date].[Calendar Year].&[2003],
+[Date].[Calendar Year].&[2004]} on 0,
+
+{[Product].[Category].[Category].members} *
+{([Measures].[Reseller Sales Amount]),
+[Measures].[Reseller Order Quantity]}
+
+
+
+on 1
+From [Step-by-Step]
+Where [Geography].[Country].&[United States]
