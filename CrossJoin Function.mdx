@@ -4,13 +4,13 @@ Select
 	[Date].[Calendar Year].&[2004]	}*
 
 {	([Measures].[Reseller Sales Amount]),
-	[Measures].[Reseller Order Quantity]	} on 0,
+	[Measures].[Internet Sales Amount]	} on 0,
 
 
-
+	-- --  -------
 
 {[Product].[Category].[Category].members}*
-{[Product].[Subcategory].[Subcategory].members}
+{[Product].[Color].[Color].members}
  on 1 
 
 From [Step-by-Step]
