@@ -1,14 +1,17 @@
-Select
-{[Date].[Calendar Year].&[2002],
-[Date].[Calendar Year].&[2003],
-[Date].[Calendar Year].&[2004]} on 0,
+Select 
+{	[Date].[Calendar Year].&[2002],
+	[Date].[Calendar Year].&[2003],
+	[Date].[Calendar Year].&[2004]	}*
 
-{[Product].[Category].[Category].members} *
-{([Measures].[Reseller Sales Amount]),
-[Measures].[Reseller Order Quantity]}
-
+{	([Measures].[Reseller Sales Amount]),
+	[Measures].[Reseller Order Quantity]	} on 0,
 
 
-on 1
+
+
+{[Product].[Category].[Category].members}*
+{[Product].[Subcategory].[Subcategory].members}
+ on 1 
+
 From [Step-by-Step]
 Where [Geography].[Country].&[United States]
