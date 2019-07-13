@@ -1,0 +1,22 @@
+Select 
+{	[Date].[Calendar Year].&[2002],
+	[Date].[Calendar Year].&[2003],
+	[Date].[Calendar Year].&[2004]}
+					*
+
+{	([Measures].[Reseller Sales Amount]),
+	[Measures].[Internet Sales Amount]	} on 0,
+
+--------------------------------------------------------
+	-- --  -------
+Exists({[Product].[Category].[Category].members}*
+		{[Product].[Color].[Color].members},   --First Peremeter
+
+		{[Product].[Subcategory].&[1]}   --Target Peremeter
+		
+		)
+
+ on 1 
+
+From [Step-by-Step]
+Where ([Geography].[Country].&[United States])
