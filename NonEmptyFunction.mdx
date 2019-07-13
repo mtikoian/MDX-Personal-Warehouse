@@ -1,0 +1,9 @@
+SELECT
+{[Measures].[Reseller Sales Amount]} ON 0 ,
+
+-------------------------------------------
+{[Date].[Calendar].[Month].&[2002]&[5]}*
+{[Employee].[Employees].members} on 1
+					
+
+fROM [Step-by-Step]
