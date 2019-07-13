@@ -1,0 +1,15 @@
+select{([Date].[Calendar Year].&[2002],[Geography].[Country].&[United States]),
+       ([Date].[Calendar Year].&[2003],[Geography].[Country].&[United States]),
+	          ([Date].[Calendar Year].&[2004],[Geography].[Country].&[United States])
+} on 0,
+Distinct(
+{[Product].[Product Categories].[Accessories],
+[Product].[Product Categories].[Bikes],
+[Product].[Product Categories].[Clothing],
+[Product].[Product Categories].[Components],
+[Product].[Product Categories].[Mountain Bikes],
+[Product].[Product Categories].[Mountain Bikes]
+
+
+}) on 1 
+From [Step-by-Step]

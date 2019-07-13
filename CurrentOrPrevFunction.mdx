@@ -1,0 +1,8 @@
+with member [Measures].[ComparePerformance] as 
+[Measures].[Customer Amount] - ([Measures].[Customer Amount],
+[Time].[Year].currentmember.prevmember)
+
+select {[Measures].[Customer Amount],[Measures].[ComparePerformance]} on 0,
+[Time].[Year].children on 1
+from [Customer Data Warehouse]
+
