@@ -1,0 +1,7 @@
+with member [Measures].[Parent Member Name] as
+[Product].[Product Categories].CurrentMember.Parent.Name
+
+select 
+[Measures].[Parent Member Name] on 0,
+[Product].[Product Categories].allmembers on 1 
+From [Step-by-Step]
