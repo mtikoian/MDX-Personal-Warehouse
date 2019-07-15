@@ -1,0 +1,14 @@
+With
+Member [Measures].[Number of Products] as 
+Count(
+EXISTING[Product].[Product].members
+)
+
+Select {[Measures].[Reseller Sales Amount],
+[Measures].[Number of Products]
+
+
+
+} on 0,
+[Product].[Category].members on 1
+From [Step-by-Step]
