@@ -1,2 +1,14 @@
-with member [Product].[Category].[All Products].[Percent Bikes] as
-([Product].[Category].&[1]/[Product].[Category].[All Products]),Format_string = "Percent"
+with member [Measures].[Combined Sales Amount] as 
+([Measures].[Reseller Sales Amount] + [Measures].[Internet Sales Amount]),solve_order = 1
+
+
+ member [Product].[Category].[All Products].[Percent Bikes] as
+([Product].[Category].&[1]/[Product].[Category].[All Products]),Format_string = "Percent",
+solve_order = 2
+
+select 
+{[Measures].[Reseller Sales Amount],
+[Measures].[Internet Sales Amount],
+[Measures].[Combined Sales Amount]} on 0,
+[Product].[Category].allmembers on 1
+From [Step-by-Step]
