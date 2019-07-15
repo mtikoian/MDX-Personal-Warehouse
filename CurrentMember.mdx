@@ -1,7 +1,21 @@
-with member [Measures].[Parent Member Name] as
-[Product].[Product Categories].CurrentMember.Parent.Name
+with 
+member 
+[Measures].[Parent Member Name] as
+IIF([Product].[Product Categories].CurrentMember.properties("Level_Number",TYPED)=0,
+"Not Applicable",
+[Product].[Category].currentMember.Parent.name)
+
+member 
+[Measures].[Percent of Parent] AS
+([Measures].[Reseller Sales Amount])/
+([Product].[Product Categories].currentmember.parent,[Measures].[Reseller Sales Amount]),
+format_string = "percent"
+
+
 
 select 
-[Measures].[Parent Member Name] on 0,
+{[Measures].[Parent Member Name],
+ [Measures].[Reseller Sales Amount],
+ [Measures].[Percent of Parent]} on 0,
 [Product].[Product Categories].allmembers on 1 
 From [Step-by-Step]
