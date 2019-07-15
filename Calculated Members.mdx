@@ -1,15 +1,12 @@
-With member [Product].[Category].[All Products].[x] as 1+1
+With member [Product].[Category].[All Products].[Bikes & Accessories] as 
+[Product].[Category].&[1]+[Product].[Category].&[4]
 --created member 
 
 SELECT 
 {[Date].[Calendar].[Calendar Year].&[2003],[Date].[Calendar].[Calendar Year].&[2004]} ON 0 ,
 
 -------------------------------------------
-{[Product].[Category].&[4],
-[Product].[Category].&[1],
-[Product].[Category].&[3],
-[Product].[Category].&[2],
-[Product].[Category].[All Products].[x]} on 1
+{[Product].[Category].[Category].allmembers} on 1
 					
 
 fROM [Step-by-Step]
