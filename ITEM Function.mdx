@@ -1,0 +1,32 @@
+WITH
+MEMBER [Measures].[Top Product Sales]
+as
+{
+Existing 
+topcount([Product].[Product].[Product].members,
+1,
+[Measures].[Internet Sales Amount]*
+[Measures].[Internet Sales Amount]
+)
+}.item(0)
+,
+format_string = "Currency"
+
+member [Measures].[Top Product Name] as
+{
+Existing topcount([Product].[Product].[Product].members,
+1,
+[Measures].[Internet Sales Amount])
+
+}.item(0).name
+
+
+SELECT 
+{
+[Measures].[Internet Sales Amount],
+ [Measures].[Top Product Sales],
+ [Measures].[Top Product Name]
+} on 0,
+[Date].[Calendar Year].&[2001]:[Date].[Calendar Year].&[2004] on 1
+From [Step-by-Step]
+
