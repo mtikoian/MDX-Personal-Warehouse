@@ -1,0 +1,27 @@
+With 
+Member [Product].[Subcategory].[Top 10]
+as
+SUM(
+
+
+Topcount([Product].[Subcategory].[Subcategory].members,
+10,
+[Measures].[Reseller Sales Amount])
+,
+
+[Measures].[Reseller Sales Amount]
+)
+
+
+select [Measures].[Reseller Sales Amount] on 0,
+{
+[Product].[Subcategory].[Top 10],
+([Product].[Subcategory].[Subcategory].members)
+
+
+}on 1
+From [Step-by-Step]
+
+
+
+

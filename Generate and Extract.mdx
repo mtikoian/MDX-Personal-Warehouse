@@ -1,0 +1,20 @@
+select [Measures].[Reseller Sales Amount] on 0,
+
+Generate(
+[Product].[Category].[Category].members,
+
+[Product].[Category].Currentmember*
+TopCount(
+        Existing
+		[Product].[Product].[Product].members,5,[Measures].[Reseller Sales Amount]
+		),
+		
+		
+		all
+		) 
+		
+		
+		
+		on 1 
+From [Step-by-Step]
+-----------------------------------------
