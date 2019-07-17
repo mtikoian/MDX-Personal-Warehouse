@@ -1,0 +1,49 @@
+SELECT 
+[Measures].[Reseller Sales Amount] on 0,
+UNION(
+
+TOPCOUNT([Product].[Product].[Product].members,
+10,
+([Measures].[Reseller Sales Amount],[Date].[Calendar Year].&[2003])
+),
+
+TOPCOUNT([Product].[Product].[Product].members,
+10,
+([Measures].[Reseller Sales Amount],[Date].[Calendar Year].&[2004])
+)
+) on 1
+From [Step-by-Step]
+
+--------------------
+SELECT 
+[Measures].[Reseller Sales Amount] on 0,
+eXCEPT(
+
+TOPCOUNT([Product].[Product].[Product].members,
+10,
+([Measures].[Reseller Sales Amount],[Date].[Calendar Year].&[2003])
+),
+
+TOPCOUNT([Product].[Product].[Product].members,
+10,
+([Measures].[Reseller Sales Amount],[Date].[Calendar Year].&[2004])
+)
+) on 1
+From [Step-by-Step]
+
+--------------------------
+SELECT 
+[Measures].[Reseller Sales Amount] on 0,
+iNTERSECT(
+
+TOPCOUNT([Product].[Product].[Product].members,
+10,
+([Measures].[Reseller Sales Amount],[Date].[Calendar Year].&[2003])
+),
+
+TOPCOUNT([Product].[Product].[Product].members,
+10,
+([Measures].[Reseller Sales Amount],[Date].[Calendar Year].&[2004])
+)
+) on 1
+From [Step-by-Step]
