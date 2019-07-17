@@ -1,0 +1,11 @@
+with member
+[Measures].[month average reseller amount] as
+Avg(
+existing [Date].[Month of Year].[Month of Year].members,
+[Measures].[Reseller Sales Amount]
+
+)
+
+select [Measures].[month average reseller amount] on 0,
+nonempty([Date].[Fiscal Year].&[2002]:[Date].[Fiscal Year].&[2007])on 1
+From [Step-by-Step]

@@ -1,0 +1,18 @@
+WITH 
+MEMBER [Measures].[Max Sales By Category] as
+MAX([Product].[Subcategory].[Subcategory].members,
+[Measures].[Reseller Sales Amount]
+)
+
+Member [Measures].[Percentage of Max] as 
+[Measures].[Reseller Sales Amount]/[Measures].[Max Sales By Category],
+Format_String = "percent"
+
+
+Select 
+{[Measures].[Reseller Sales Amount],
+[Measures].[Percentage of Max]} on 0,
+
+
+[Product].[Subcategory].[Subcategory].members on 1 From [Step-by-Step]
+
