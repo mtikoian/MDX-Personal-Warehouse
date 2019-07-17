@@ -1,0 +1,16 @@
+Select
+{
+[Measures].[Reseller Sales Amount],
+[Measures].[Internet Sales Amount]
+} on 0,
+
+
+
+Filter(
+[Product].[Product].[Product].members,
+[Measures].[Internet Sales Amount]>[Measures].[Reseller Sales Amount]
+and NOT( [Product].[Category].currentmember is [Product].[Category].&[3] or
+     [Product].[Category].currentmember is [Product].[Category].&[4])
+
+) on 1
+From [Step-by-Step]
