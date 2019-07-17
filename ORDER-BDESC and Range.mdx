@@ -1,0 +1,16 @@
+select 
+[Measures].[Reseller Sales Amount] on 0,
+
+ORDER({
+[Product].[Category].[Category].members*
+[Product].[Subcategory].[Subcategory].members
+},[Measures].[Reseller Sales Amount],BDESC)
+ on 1
+From [Step-by-Step]
+
+
+
+SELECT {[Measures].[Reseller Sales Amount]} on 0,
+{[Date].[Calendar Year].&[2001]:[Date].[Calendar Year].&[2004]} 
+on 1 
+From [Step-by-Step]
