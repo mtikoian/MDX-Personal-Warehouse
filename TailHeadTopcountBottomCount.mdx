@@ -1,0 +1,11 @@
+SELECT
+[Measures].[Reseller Sales Amount] on 0,
+
+
+HEAD(       --topcount - bottomcount
+ORDER(
+{[Product].[Subcategory].[Subcategory].members},
+[Measures].[Reseller Sales Amount],Bdesc),5) ON 1
+
+
+fROM [Step-by-Step]
