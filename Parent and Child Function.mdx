@@ -1,0 +1,22 @@
+With
+Member [Measures].[Percent of Parents] as
+[Measures].[Reseller Sales Amount]/
+([Product].[Product Categories].currentmember.parent,[Measures].[Reseller Sales Amount]),
+Format_String = "Percent"
+
+
+Select 
+{[Measures].[Reseller Sales Amount],[Measures].[Percent of Parents]} on 0,
+[Product].[Product Categories].members on 1 
+From [Step-by-Step]
+---------------------
+
+
+With member [Measures].[Number of Child] as
+Count(
+[Product].[Product Categories].currentmember.children
+)
+
+Select [Measures].[Number of Child] on 0,
+[Product].[Product Categories].[Category].members on 1
+From [Step-by-Step]
