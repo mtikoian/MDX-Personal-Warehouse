@@ -1,0 +1,49 @@
+With
+Member [Measures].[Sibling Rank]
+as
+RANK([Product].[Category].Currentmember,
+	[Product].[Category].Currentmember.siblings,
+	[Measures].[Reseller Sales Amount]
+)
+
+SELECT 
+{
+[Measures].[Reseller Sales Amount],
+[Measures].[Sibling Rank]
+
+
+}ON 0,
+[Product].[Category].[Category].MEMBERS ON 1 From [Step-by-Step]
+
+--------------------------------Ancestor-----------------------
+with member
+[Measures].[Percent of Category] as 
+[Measures].[Reseller Sales Amount]/
+(Ancestor([Product].[Product Categories].currentmember,
+         [Product].[Product Categories].[Category]),
+		 [Measures].[Reseller Sales Amount]
+),format_string = "pERCENT"
+
+select
+{[Measures].[Reseller Sales Amount],
+[Measures].[Percent of Category] 
+}ON 0,
+
+[Product].[Product Categories].[Product].MEMBERS on 1 From [Step-by-Step]
+
+------------------Ascendants---------------
+Select 
+[Measures].[Reseller Sales Amount] on 0,
+ascendants([Product].[Product Categories].[Product].&[360]) on 1 From [Step-by-Step]
+-----------------PrevMember---------
+
+With Member
+[Measures].[Prior Period Reseller Sales] as
+([Date].[Calendar].currentmember.prevmember,
+[Measures].[Reseller Sales Amount]),format_String = "Currency"
+
+Select
+{[Measures].[Reseller Sales Amount],
+[Measures].[Prior Period Reseller Sales]} on 0,
+[Date].[Calendar].[Month].members on 1 
+From [Step-by-Step]
